@@ -6,11 +6,11 @@ startTime = time.time()
 chunk_size = 10000
 executionTime = 0
 
-outfile_number = 1
-outfile = None
 
 def chunk_csv(input_file):
     global executionTime
+    outfile_number = 1
+    outfile = None
 
     with open(input_file, 'r') as infile:
         for index, row in enumerate(csv.reader(infile)):

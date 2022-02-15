@@ -55,6 +55,6 @@ def test_chunk_csv():
         "sample-6.csv":
         Content(10000, "John ,Doe 50000", "John ,Doe 59999"),
         "sample-7.csv":
-        Content(1924, "John ,Doe 60000", "John ,Doe 61923"),
+        Content(2000, "John ,Doe 60000", "John ,Doe 61999"),
     }
     assert actual_line_lengths == expected_content
