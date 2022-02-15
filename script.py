@@ -2,13 +2,14 @@ import csv
 import time
 import sys
 
+from decorators import timing
+
 startTime = time.time()
 chunk_size = 10000
-executionTime = 0
 
 
+@timing
 def chunk_csv(input_file):
-    global executionTime
     outfile_number = 1
     outfile = None
 
@@ -22,7 +23,6 @@ def chunk_csv(input_file):
                 outfile_number += 1
                 writer = csv.writer(outfile)
             writer.writerow(row)
-            executionTime = (time.time() - startTime)
 
 
 if __name__ == "__main__":
@@ -31,6 +31,3 @@ if __name__ == "__main__":
     else:
         input_csv = sys.argv[1]
     chunk_csv(input_csv)
-    #print('Execution time in seconds: ' + str(executionTime))
-    data = 'Execution time in seconds: ' + str(executionTime)
-    print(data)
