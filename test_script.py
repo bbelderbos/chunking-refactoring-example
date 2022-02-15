@@ -4,7 +4,7 @@ import re
 
 import pytest
 
-import script
+from script import chunk_csv, chunk_size
 
 CSV_OUTPUT_FILE_PATTERN = re.compile(r"sample-\d+\.csv")
 Content = namedtuple("Content", "num_lines first_line last_line")
@@ -21,8 +21,11 @@ def delete_previous_run(request):
 
 def test_chunk_csv():
     # number of output files
-    with open("sample.csv") as f:
-        num_chunks = len(f.readlines()) // script.chunk_size + 1
+    input_file = "sample.csv"
+    chunk_csv(input_file)
+
+    with open(input_file) as f:
+        num_chunks = len(f.readlines()) // chunk_size + 1
     output_files = [file for file in os.listdir(".")
                     if CSV_OUTPUT_FILE_PATTERN.match(file)]
     assert len(output_files) == num_chunks
