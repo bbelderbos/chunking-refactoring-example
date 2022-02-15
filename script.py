@@ -1,7 +1,5 @@
-from collections import defaultdict
 import csv
 from pathlib import Path
-import time
 import sys
 
 from decorators import timing
@@ -11,8 +9,6 @@ DEFAULT_CHUNK_SIZE = 10_000
 
 @timing
 def chunk_csv(input_file, chunk_size=DEFAULT_CHUNK_SIZE):
-    files = defaultdict(list)
-
     with open(input_file, 'r') as infile:
         reader = csv.reader(infile)
         rows = []
@@ -22,6 +18,7 @@ def chunk_csv(input_file, chunk_size=DEFAULT_CHUNK_SIZE):
                 rows = []
             rows.append(row)
         yield rows
+
 
 @timing
 def write_chunks(input_file, chunks):
