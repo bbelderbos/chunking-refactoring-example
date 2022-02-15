@@ -6,12 +6,11 @@ import sys
 
 from decorators import timing
 
-startTime = time.time()
-chunk_size = 10000
+DEFAULT_CHUNK_SIZE = 10_000
 
 
 @timing
-def chunk_csv(input_file):
+def chunk_csv(input_file, chunk_size=DEFAULT_CHUNK_SIZE):
     files = defaultdict(list)
 
     with open(input_file, 'r') as infile:
